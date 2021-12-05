@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle'
+import EditIcon from '@mui/icons-material/Edit';
 import {editTodo} from './util.js'
 
 function FormDialog(props) {
@@ -25,7 +26,7 @@ function FormDialog(props) {
 console.log('formDialog:',props.text)
   return (
     <div>
-      <Button variant="contained" color="secondary"  onClick={handleClickOpen}>Edit</Button>
+      <Button variant="contained" color="secondary"  onClick={handleClickOpen}><EditIcon/></Button>
       <Dialog open={open} onClose={()=>handleClose('')}>
         <DialogTitle>Módosítás</DialogTitle>
         <DialogContent>

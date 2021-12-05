@@ -30,9 +30,9 @@ function App() {
       <FormControl variant="filled"  >
     <div className="form">
           <InputLabel><CreateIcon/> Write a todo:</InputLabel>
-          <Input values={input} onChange={(e) => setInput(e.target.value)} />
+          <Input sx={{m:1, width: '100%' }} values={input} onChange={(e) => setInput(e.target.value)} />
           <Button disabled={!input} type="submit" onClick={()=>addTodo(input)} variant="contained" >add todo</Button>
-          <Button  type="button" onClick={queryDelete} variant="contained" color="error" >query-delete</Button>
+          <Button  type="button" onClick={queryDelete} variant="contained" sx={{ m: 1, width: '20ch' }} color="error" >query-delete</Button>
       </div>
       </FormControl>
  </div>

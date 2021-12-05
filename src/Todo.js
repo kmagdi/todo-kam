@@ -15,7 +15,7 @@ function Todo(props) {
 
   return (
     <Box  sx={{mx: 'auto',bgcolor: 'primary.main', color: '#fff', p: 1,m: 1, borderRadius: 1,textAlign: 'center',}}>
-      <FormDialog  id={props.id} text={props.text}/>
+    
       <List >
         <ListItem className="list">
         <ListItemAvatar>
@@ -23,9 +23,10 @@ function Todo(props) {
         </ListItemAvatar>  
         <ListItemText  primary={props.text} />
         <div>
-            <Button variant="contained" color="secondary" onClick={()=>updateTodo(props.id)}><EditIcon/></Button>
-            <Button variant="contained" color="error" onClick={()=>deleteTodo(props.id)}><DeleteIcon/></Button>
+           {/*/ <Button variant="contained" color="secondary" onClick={()=>updateTodo(props.id)}><EditIcon/></Button>*/}
+            <Button variant="contained" color="error"  onClick={()=>deleteTodo(props.id)}><DeleteIcon/></Button>
             <Button variant="contained" color="success" onClick={()=>doneTodo(props.id)}><DoneOutlineIcon/></Button>
+            <FormDialog  id={props.id} text={props.text}/>
         </div>    
         </ListItem>
       </List>
