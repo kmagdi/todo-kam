@@ -1,0 +1,11 @@
+.list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.active{
+    text-decoration: none;
+}
+.done{
+    text-decoration: line-through;
+    background-color:green;
+}

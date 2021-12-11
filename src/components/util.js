@@ -1,39 +1,35 @@
 //a backend kölünválasztva
-import db from "./firebaseApp";
+import db from "../firebaseApp";
 import {collection, addDoc,setDoc,doc,deleteDoc,query,where,getDocs } from "firebase/firestore";
 
 export const addTodo =async (input) => {
-    console.log('input:',input)
+    //console.log('input:',input)
     const collectionRef= collection(db, "todos");
-    const newItem={'todo':input}
+    const newItem={'todo':input,'done':false}
     const newDocRef=await addDoc(collectionRef,newItem)
-    console.log("az új documentum azonosítója:",newDocRef.id)
+    //console.log("az új documentum azonosítója:",newDocRef.id)
   };
 
-  export const updateTodo=async (id)=>{
-    console.log('id:',id)
+  export const editTodo=async (id,todo,done)=>{
+    //console.log('editTodo - id:',id,todo)
     const docRef= doc(db, "todos", id);
-    const todo=prompt("Írd be mire legyen átírva:")
-    setDoc(docRef, {id,todo})
-  }
-  export const editTodo=async (id,todo)=>{
-    console.log('editTodo - id:',id,todo)
-    const docRef= doc(db, "todos", id);
-    setDoc(docRef, {id,todo})
+    setDoc(docRef, {todo,done})
   }
 
-  export const doneTodo=async (id)=>{
-    console.log('id:',id)
+  export const doneTodo=async (id,todo,done)=>{
+    const docRef=doc(db, "todos", id);
+    done= done?false:true;
+    setDoc(docRef, {todo,done})
   }
 
   export const deleteTodo=async (id)=>{
-    console.log('id:',id)
+    //console.log('id:',id)
     const docRef= doc(db, "todos", id);
     await deleteDoc(docRef)
   }
   
-  export const queryDelete=async ()=>{
-    const userInput=prompt("Mit szeretnél kitörölni? ")
+  export const queryDelete=async (userInput)=>{
+    //const userInput=prompt("Mit szeretnél kitörölni? ")
     const collectionRef= collection(db, "todos");
     const q=query(collectionRef,where('todo','==',userInput))
     const snapshot= await getDocs(q)

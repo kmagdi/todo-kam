@@ -6,12 +6,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle'
-import EditIcon from '@mui/icons-material/Edit';
-import {editTodo} from './util.js'
+import DeleteIcon from '@mui/icons-material/Delete';
+import {queryDelete} from './util.js'
 
-function FormDialog(props) {
+function FormDialogDelete() {
   const [open, setOpen] = useState(false);
-  const [txtField,settxtField]=useState(props.text)
+  const [txtField,settxtField]=useState('')
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -19,27 +19,28 @@ function FormDialog(props) {
 
   const handleClose = (txt) => {
     setOpen(false);
-    console.log("handleClose:",txt)
+    //console.log("handleClose:",txt)
     if(txt.length > 0) 
-        editTodo(props.id,txt)
+        queryDelete(txt)
   };
-console.log('formDialog:',props.text)
+
   return (
-    <div>
-      <Button variant="contained" color="secondary"  onClick={handleClickOpen}><EditIcon/></Button>
+    <React.Fragment>
+      <Button  variant="contained" color="secondary"  onClick={handleClickOpen}><DeleteIcon/>query-delete</Button>
+
       <Dialog open={open} onClose={()=>handleClose('')}>
-        <DialogTitle>Módosítás</DialogTitle>
+        <DialogTitle>Az összes találat törlése</DialogTitle>
         <DialogContent>
-          <DialogContentText>{props.text}</DialogContentText>
           <TextField  autoFocus margin="dense" fullWidth  variant="standard" onChange={(e)=>settxtField(e.target.value)} value={txtField}         />
         </DialogContent>
         <DialogActions>
           <Button onClick={()=>handleClose('')}>Cancel</Button>
-          <Button onClick={()=>handleClose(txtField)}>update</Button>
+          <Button onClick={()=>handleClose(txtField)}>delete</Button>
         </DialogActions>
       </Dialog>
-    </div>
+
+    </React.Fragment>
   );
 }
 
-export default FormDialog
+export default FormDialogDelete
