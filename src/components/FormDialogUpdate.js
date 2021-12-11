@@ -21,7 +21,7 @@ function FormDialogUpdate(props) {
     setOpen(false);
     console.log("handleClose:",txt)
     if(txt.length > 0) 
-        editTodo(props.id,txt,props.done)
+        editTodo(props.id,txt)
   };
 console.log('formDialog:',props.text)
   return (

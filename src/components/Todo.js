@@ -21,7 +21,7 @@ function Todo(props) {
         <ListItemText  primary={props.text} className={props.done? 'done' : 'active'}/>
 
             <Button variant="contained" color="error"  onClick={()=>deleteTodo(props.id)}><DeleteIcon/></Button>
-            <Button variant="contained" color="success" onClick={()=>doneTodo(props.id,props.text,props.done)}><DoneOutlineIcon/></Button>
+            <Button variant="contained" color="success" onClick={()=>doneTodo(props.id,props.done)}><DoneOutlineIcon/></Button>
             <FormDialogUpdate  id={props.id} text={props.text} done={props.done}/>
     
         </ListItem>

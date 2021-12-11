@@ -1,25 +1,27 @@
 //a backend kölünválasztva
-import db from "../firebaseApp";
-import {collection, addDoc,setDoc,doc,deleteDoc,query,where,getDocs } from "firebase/firestore";
+import {db} from "../firebaseApp";
+import {collection, addDoc,setDoc,doc,deleteDoc,query,where,getDocs,serverTimestamp, updateDoc } from "firebase/firestore";
 
 export const addTodo =async (input) => {
     //console.log('input:',input)
     const collectionRef= collection(db, "todos");
-    const newItem={'todo':input,'done':false}
+    const newItem={'todo':input,'done':false,timestamp:serverTimestamp()}
     const newDocRef=await addDoc(collectionRef,newItem)
     //console.log("az új documentum azonosítója:",newDocRef.id)
   };
 
-  export const editTodo=async (id,todo,done)=>{
+  export const editTodo=async (id,todo)=>{
     //console.log('editTodo - id:',id,todo)
     const docRef= doc(db, "todos", id);
-    setDoc(docRef, {todo,done})
+    //setDoc(docRef, {todo,done})//felülír minden mezőt, s ha nem sorolok fel mindent, akkor kitörli, s csak a megadott mezők kerülnek be
+    updateDoc(docRef, {todo})//csak azt a mezőt írja felül amit megadok
   }
 
-  export const doneTodo=async (id,todo,done)=>{
+  export const doneTodo=async (id,done)=>{
     const docRef=doc(db, "todos", id);
     done= done?false:true;
-    setDoc(docRef, {todo,done})
+    //setDoc(docRef, {todo,done})
+    updateDoc(docRef, {done})
   }
 
   export const deleteTodo=async (id)=>{
