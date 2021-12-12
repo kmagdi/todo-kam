@@ -9,9 +9,10 @@ import {auth} from '../firebaseApp'
 function Login(){
     const [email, setEmail]=useState('')
     const [password,setPassword]=useState('')
-    
+   
     const [user,setUser]=useState({})
 
+    
     onAuthStateChanged(auth,(currentUser)=>setUser(currentUser))
    
     const register=async ()=>{
@@ -46,7 +47,7 @@ function Login(){
             <Input sx={{ mb: 1 }} placeholder="password" type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
         </div>
         <div>
-            <Button disabled={user} onClick={register}   variant="contained" ><AppRegistrationIcon/></Button>
+            <Button disabled onClick={register}   variant="contained" ><AppRegistrationIcon/></Button>
             <Button disabled={!user} onClick={logout}   variant="contained" ><LogoutIcon /></Button>
             <Button disabled={user} onClick={login}   variant="contained" ><LoginIcon/></Button>
         </div>
