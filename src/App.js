@@ -19,9 +19,8 @@ function App() {
 
   return (
     <div className="wrapper">
-      <h1>Application</h1>
       <BrowserRouter>
-      <NavigationBar></NavigationBar>
+      <NavigationBar token={token}></NavigationBar>
         <Routes>
            {/* <Route exact path="/" element={<Home />} />*/}
             <Route path="/preferences" element={<Preferences />} />

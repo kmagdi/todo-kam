@@ -36,7 +36,7 @@ function TodoApp() {
     }, []); //egyszer fut le amikor betöltődik a komponens
 
   return (
-    <div className="App">
+    <div className="App mt-5">
       <h1>My todos</h1>
      
       <div className="box">
