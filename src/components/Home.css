@@ -1,0 +1,17 @@
+.home{
+    min-height:130vw;
+    background-image: url(../images/home.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.alert{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    color:red;
+    background-color:rgb(206, 201, 201,0.4);
+    font-weight: bold;
+    font-size:2rem;
+}
