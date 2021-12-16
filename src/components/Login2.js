@@ -39,7 +39,7 @@ function Login2(){
     
         <FormControl  className="border shadow" >
         <div>Bejelentkezve:{user?.email}</div>
-          <div className="form border p-3 bg-light">
+          <div className="form border p-3">
             <input  className="p-2 mb-2 form-control" placeholder="email" type="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
             <input className="p-2 form-control" placeholder="password" type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
             <Button disabled={user} onClick={register}   variant="contained" ><AppRegistrationIcon/></Button>
