@@ -5,6 +5,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import {createUserWithEmailAndPassword ,onAuthStateChanged,signOut,signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from '../firebaseApp'
+import './Login.css'
 
 function Login(){
     const [email, setEmail]=useState('')
@@ -37,9 +38,10 @@ function Login(){
     }
 
       return (
-        <div className="m-5 row justify-content-center ">
-        <h3 className="w-100 text-center m-2 p-2">🍀🌸KAM's todo list🌸🍀</h3>
-        <FormControl  sx={{ m: 2,p:2,border:1,borderColor: 'primary.main' }} >
+        <div className="login-back"> 
+        <div className="login ">
+        <h3 >🍀🌸KAM's todo list🌸🍀</h3>
+        <FormControl  sx={{ m: 2,p:2,border:1,borderColor: 'white' }} className="form">
         <div className="m-2"><small>Bejelentkezve:</small>{user?.email}</div>
           <div className="text-center">
              <Input  sx={{ mb: 1 }} placeholder="email" type="email" value={email} onChange={(e)=>setEmail(e.target.value)}/> 
@@ -56,7 +58,7 @@ function Login(){
         
         </FormControl>
     </div>
-   
+    </div>
     );
   }
 

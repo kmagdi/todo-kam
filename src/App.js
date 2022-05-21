@@ -7,7 +7,7 @@ import Preferences from './components/Preferences';
 import Login from './components/Login';
 import {onAuthStateChanged} from "firebase/auth";
 import {auth} from './firebaseApp'
-import NavigationBar from './components/NavigationBar';
+import NavigationBar from './components/NavigationBar.jsx';
 
 function App() {
   const [token, setToken] = useState();

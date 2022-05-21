@@ -1,11 +1,15 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import {motion} from 'framer-motion'
 
 function NavigationBar(props) {
 return (
     <Navbar bg="dark" expand="md" variant="dark" className="navbar fixed-top">
-    <Navbar.Brand href="#">KAM's 🌸todos🍀</Navbar.Brand>
+    <Navbar.Brand href="#">KAM's 
+        <motion.span  animate={{rotate:360}} transition={{repeat:Infinity, duration:2,ease:"linear",delay:1}}>🌸</motion.span> todos 
+        <motion.span  animate={{rotate:-360}} transition={{repeat:Infinity, duration:2,ease:"linear",delay:1}}>🍀</motion.span>
+    </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
