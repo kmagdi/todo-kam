@@ -1,17 +1,17 @@
-import "./App.css";
+import "../App.css";
 import React, { useState, useEffect } from "react";
 import { List, FormControl, InputLabel, Input, Button ,Typography} from "@mui/material";
 import CreateIcon from '@mui/icons-material/Create';
-import Todo from "./components/Todo.js";
-import {db} from "./firebaseApp";
+import Todo from "./Todo.js";
+import {db} from "../firebaseApp";
 import { collection, onSnapshot,query,orderBy } from "firebase/firestore";
-import { addTodo } from './components/util.js'
-import FormDialogDelete from './components/FormDialogDelete'
-import Login from './components/Login'
+import { addTodo } from './util.js'
+import FormDialogDelete from './FormDialogDelete'
+import { Logout } from "./Logout";
 
 
 
-function App() {
+function TodoApp({token}) {
   const [todos, setTodos] = useState([{ todo: "...Loding", id: "initial", done: false }]);//objektummal inicializájuk,az attribútok megegyeznek firebase dokumentumban attribútumokkal
   const [input, setInput] = useState("");
 
@@ -21,24 +21,20 @@ function App() {
   }
 
   useEffect(() =>{
+    if (!token) return; // signed out
     const collectionRef=collection(db, "todos");
     const q=query(collectionRef,orderBy('timestamp','desc'))
     const unsubscribe=onSnapshot(q, (snapshot) => {
-      //console.log(snapshot)
-      //console.log(snapshot.docs)
-      //console.log(snapshot.docs.map(doc=>doc.data()))
-      //console.log(snapshot.docs.map((doc) => doc.data().todo));
-      //setTodos(snapshot.docs.map((doc) => doc.data().todo))//szükségünk van az azonosítóra is
       setTodos(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))//egy olyan objektumunk lesz amelynek megvan minden 
-      //attribútuma ami a firebaseből kiolvasodik és még kiegészítjük egy id attributummal, szükség lesz a rá a renderelésnél
       return unsubscribe;
       })
     }, []); //egyszer fut le amikor betöltődik a komponens
 
+   
   return (
-    <div className="App">
+    <div className="App mt-5">
       <h1>My todos</h1>
-      <Login/>
+      <Logout />
       <div className="box">
         <FormControl variant="filled"  >
           <div className="form">
@@ -58,4 +54,4 @@ function App() {
   );
 }
 
-export default App;
+export default TodoApp;
